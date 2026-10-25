@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate the public app catalog and its bundled mirror without loading secrets."""
+"""Validate the single public app catalog without loading secrets."""
 import json
 from pathlib import Path
 import re
@@ -9,8 +9,6 @@ ROOT = Path(__file__).resolve().parent.parent
 
 def main():
     source = (ROOT / 'catalog/apps.json').read_bytes()
-    if source != (ROOT / 'app/src/main/assets/catalog.json').read_bytes():
-        raise ValueError('Bundled catalog differs from the public catalog')
     catalog = json.loads(source)
     if catalog['schema'] != 1 or not 1 <= len(catalog['apps']) <= 100:
         raise ValueError('Unsupported catalog schema or size')

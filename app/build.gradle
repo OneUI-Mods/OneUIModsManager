@@ -1,6 +1,23 @@
 plugins {
     id 'com.android.application'
 }
+
+abstract class GenerateCatalogAssets extends DefaultTask {
+    @InputFile
+    @PathSensitive(PathSensitivity.RELATIVE)
+    abstract RegularFileProperty getCatalogFile()
+
+    @OutputDirectory
+    abstract DirectoryProperty getOutputDirectory()
+
+    @TaskAction
+    void generate() {
+        def output = outputDirectory.file('catalog.json').get().asFile
+        output.parentFile.mkdirs()
+        output.bytes = catalogFile.get().asFile.bytes
+    }
+}
+
 android {
     namespace 'dev.ryuya.oneuimods'
     compileSdk 37
@@ -33,6 +50,18 @@ dependencies {
     implementation 'com.google.android.material:material:1.14.0'
     testImplementation 'junit:junit:4.13.2'
 }
+
+// The public JSON is the only maintained catalog. Generate the offline copy at build time.
+def generateCatalogAssets = tasks.register('generateCatalogAssets', GenerateCatalogAssets) {
+    catalogFile.set(rootProject.layout.projectDirectory.file('catalog/apps.json'))
+    outputDirectory.set(layout.buildDirectory.dir('generated/catalogAssets'))
+}
+androidComponents.onVariants(androidComponents.selector().all()) { variant ->
+    variant.sources.assets.addGeneratedSourceDirectory(generateCatalogAssets) { task ->
+        task.outputDirectory
+    }
+}
+
 tasks.register('writeRuntimeDependencyList') {
     doLast {
         def entries = configurations.releaseRuntimeClasspath.resolvedConfiguration.resolvedArtifacts

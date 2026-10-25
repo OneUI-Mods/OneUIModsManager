@@ -38,6 +38,8 @@ def validate(apk, tools):
     ):
         raise RuntimeError("Test component in release")
     with zipfile.ZipFile(apk) as archive:
+        if archive.read("assets/catalog.json") != (ROOT / "catalog/apps.json").read_bytes():
+            raise RuntimeError("Bundled catalog was not generated from the public JSON")
         names = set(archive.namelist())
         if any(name.startswith("META-INF/xposed/") for name in names):
             raise RuntimeError("Manager must not contain Xposed entries")

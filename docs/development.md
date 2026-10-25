@@ -27,9 +27,20 @@ python3 tools/package_release.py --check-release-apk app/build/outputs/apk/relea
 
 ## カタログ
 
-`catalog/apps.json`を編集し、`app/src/main/assets/catalog.json`にも同じ内容を反映してください。起動時の同梱一覧とGitHub上の一覧を同じスキーマで読みます。
+管理対象の追加・表示情報・パッケージ名・公開証明書・バージョン情報の更新は、`catalog/apps.json`だけを編集してmainへpushします。Java・Manifest・同梱用JSONの手動編集、管理アプリの再ビルド・再インストール・新しいReleaseの作成は不要です。
+
+端末の「更新を確認」、または起動時の自動確認で、`https://raw.githubusercontent.com/OneUI-Mods/OneUIModsManager/main/catalog/apps.json`を取得します。JSONを検証してからキャッシュへ保存し、無効なデータや通信失敗では最後に使えた一覧を維持します。自動確認は設定に従い前回の完了から6時間以上空いたときに行います。手動確認はこの間隔を待ちません。
+
+初回オフライン用の`assets/catalog.json`は、ビルド時の`generateCatalogAssets`が公開JSONから自動生成します。生成先は`app/build/generated/catalogAssets`で、Gitへ登録しません。APK構造検査で同梱データと元の公開JSONが一致することも照合します。
 
 `repo`、`packageName`、公開証明書のSHA-256、表示情報、`knownVersions`を登録します。秘密鍵・パスワードは登録しません。アプリ更新時には配布APKから確認したversionCodeとversionNameを対応するタグに追加してください。署名鍵ローテーション時はAndroidの署名履歴と一致する証明書を確認してから更新します。
+
+更新の流れは次のとおりです。
+
+1. 新しいアプリの署名済みrelease APK・パッケージ名・公開証明書・バージョンを確認する。
+2. `catalog/apps.json`へ登録する。同じリポジトリ・パッケージ名を重複登録しない。
+3. `python3 tools/check_catalog.py`で検証し、mainへpushする。
+4. 既存の管理アプリで「更新を確認」を実行して反映を確認する。
 
 URLはOneUI-Modsの該当リポジトリ配下のReleaseだけを許可します。リダイレクト先もGitHubのHTTPSホストに限定します。GitHub APIのトークンを端末へ配布しません。
 

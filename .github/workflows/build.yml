@@ -20,7 +20,7 @@ jobs:
           log-accepted-android-sdk-licenses: false
       - name: Test and build the release variant
         run: ./gradlew :app:testDebugUnitTest :app:lintRelease :app:assembleRelease :app:writeRuntimeDependencyList
-      - name: Check the public and bundled app catalogs
+      - name: Check the public app catalog
         run: python3 tools/check_catalog.py
       - name: Check dependency licenses
         run: python3 tools/check_license_catalog.py
