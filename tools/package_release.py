@@ -9,6 +9,7 @@ import subprocess
 import sys
 import tempfile
 import zipfile
+from release_metadata import write_metadata
 
 ROOT = Path(__file__).resolve().parent.parent
 CERTIFICATE = "f37313a1ddbe006257653b4772e9a2f43f0ddd5c0bcbf6dfe0f71c2fbd9aad73"
@@ -111,6 +112,8 @@ def main():
     if CERTIFICATE not in signature:
         raise RuntimeError("Distribution certificate mismatch")
     validate(target, tools)
+    release_metadata = dist / "release-metadata.json"
+    write_metadata(target, release_metadata, tools)
     (dist / f"OneUIModsManager-{version}-signature.txt").write_text(signature)
     source = dist / f"OneUIModsManager-{version}-source.zip"
     run(
@@ -124,7 +127,7 @@ def main():
     (dist / f"SHA256SUMS-{version}.txt").write_text(
         "".join(
             hashlib.sha256(f.read_bytes()).hexdigest() + "  " + f.name + "\n"
-            for f in [target, source]
+            for f in [target, source, release_metadata]
         )
     )
     print("Signed and verified release:", target.name)

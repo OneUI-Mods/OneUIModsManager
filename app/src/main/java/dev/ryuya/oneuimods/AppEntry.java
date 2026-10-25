@@ -9,9 +9,7 @@ record AppEntry(
     String title,
     String description,
     String category,
-    Set<String> certificates,
-    Map<String, KnownVersion> knownVersions) {
-  record KnownVersion(long code, String name) {}
+    Set<String> certificates) {
 
   static AppEntry parse(JSONObject value) throws JSONException {
     String repo = value.getString("repo"), pkg = value.getString("packageName");
@@ -26,22 +24,13 @@ record AppEntry(
       certs.add(pin);
     }
     if (certs.isEmpty()) throw new JSONException("Missing certificate");
-    Map<String, KnownVersion> versions = new HashMap<>();
-    JSONObject known = value.optJSONObject("knownVersions");
-    if (known != null)
-      for (var keys = known.keys(); keys.hasNext(); ) {
-        String tag = keys.next();
-        JSONObject v = known.getJSONObject(tag);
-        versions.put(tag, new KnownVersion(v.getLong("code"), v.getString("name")));
-      }
     return new AppEntry(
         repo,
         pkg,
         value.getString("title"),
         value.optString("description"),
         value.optString("category", "device"),
-        Set.copyOf(certs),
-        Map.copyOf(versions));
+        Set.copyOf(certs));
   }
 
   String repositoryUrl() {

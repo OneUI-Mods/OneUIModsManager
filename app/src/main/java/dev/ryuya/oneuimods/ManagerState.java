@@ -105,7 +105,8 @@ final class ManagerState {
                       etag,
                       4 * 1024 * 1024);
               String raw = response.unchanged() ? Io.read(cache) : response.text();
-              List<Release> parsed = GitHubReleases.parse(app, raw);
+              List<Release> parsed =
+                  ReleaseMetadata.load(context, app, GitHubReleases.parse(app, raw), true);
               if (!response.unchanged()) Io.write(cache, raw);
               feeds.put(app.repo(), parsed);
               errors.remove(app.repo());
@@ -136,8 +137,12 @@ final class ManagerState {
     try {
       feeds.put(
           app.repo(),
-          GitHubReleases.parse(
-              app, Io.read(new File(context.getFilesDir(), "release-" + app.repo() + ".json"))));
+          ReleaseMetadata.load(
+              context,
+              app,
+              GitHubReleases.parse(
+                  app, Io.read(new File(context.getFilesDir(), "release-" + app.repo() + ".json"))),
+              false));
     } catch (Exception ignored) {
     }
   }

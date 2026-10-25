@@ -12,7 +12,7 @@ final class GitHubReleases {
       if (item.optBoolean("draft")) continue;
       JSONArray assets = item.getJSONArray("assets");
       List<Release.Asset> apks = new ArrayList<>();
-      Release.Asset sums = null;
+      Release.Asset sums = null, metadata = null;
       for (int n = 0; n < assets.length(); n++) {
         JSONObject a = assets.getJSONObject(n);
         String name = a.getString("name"), url = a.getString("browser_download_url");
@@ -23,10 +23,10 @@ final class GitHubReleases {
         if (lower.endsWith(".apk") && !lower.contains("debug") && !lower.contains("unsigned"))
           apks.add(asset);
         if (lower.startsWith("sha256sums")) sums = asset;
+        if (lower.equals("release-metadata.json")) metadata = asset;
       }
       if (apks.size() != 1) continue;
       String tag = item.getString("tag_name");
-      AppEntry.KnownVersion known = app.knownVersions().get(tag);
       String page = app.repositoryUrl() + "/releases/tag/" + android.net.Uri.encode(tag);
       result.add(
           new Release(
@@ -38,8 +38,9 @@ final class GitHubReleases {
               item.optBoolean("prerelease"),
               apks.get(0),
               sums,
-              known == null ? 0 : known.code(),
-              known == null ? tag.replaceFirst("^[vV]", "") : known.name()));
+              metadata,
+              0,
+              tag.replaceFirst("^[vV]", "")));
     }
     return List.copyOf(result);
   }

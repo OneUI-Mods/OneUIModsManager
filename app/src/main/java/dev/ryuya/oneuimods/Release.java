@@ -9,6 +9,7 @@ record Release(
     boolean preview,
     Asset apk,
     Asset checksums,
+    Asset metadata,
     long versionCode,
     String versionName) {
   record Asset(String name, String url, String digest, long size) {}

@@ -16,6 +16,7 @@ public final class ReleasePolicyTest {
         preview,
         new Release.Asset("app-release.apk", "", "", 4096),
         null,
+        null,
         code,
         version);
   }

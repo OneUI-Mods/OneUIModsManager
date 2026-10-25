@@ -23,9 +23,8 @@ def main():
         packages.add(package)
         if not app['certificates'] or any(not re.fullmatch(r'[a-f0-9]{64}', cert) for cert in app['certificates']):
             raise ValueError('Invalid certificate fingerprint')
-        for version in app.get('knownVersions', {}).values():
-            if not isinstance(version['code'], int) or version['code'] <= 0 or not version['name']:
-                raise ValueError('Invalid version metadata')
+        if 'knownVersions' in app:
+            raise ValueError('Release versions belong to GitHub releases, not the app catalog')
     print(f'Catalog verified: {len(repos)} applications')
 
 
