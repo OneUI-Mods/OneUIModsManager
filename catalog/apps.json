@@ -18,10 +18,10 @@
       }
     },
     {
-      "repo": "SesameUITools",
+      "repo": "DarkAppTools",
       "packageName": "dev.ryuya.sesameui",
-      "title": "Sesame UI Tools",
-      "description": "セサミのダーク表示",
+      "title": "Dark App Tools",
+      "description": "セサミ・povoのダーク表示",
       "category": "appearance",
       "certificates": [
         "c2020a1338f2504d893b368edfb77b0ab76cedeb8016df42876439a1cc92acd6"
