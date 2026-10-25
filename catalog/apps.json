@@ -19,7 +19,7 @@
     },
     {
       "repo": "DarkAppTools",
-      "packageName": "dev.ryuya.sesameui",
+      "packageName": "dev.ryuya.darkapps",
       "title": "Dark App Tools",
       "description": "セサミ・povoのダーク表示",
       "category": "appearance",
@@ -27,17 +27,9 @@
         "c2020a1338f2504d893b368edfb77b0ab76cedeb8016df42876439a1cc92acd6"
       ],
       "knownVersions": {
-        "v0.1.0-experimental": {
-          "code": 3,
-          "name": "0.1.0-experimental"
-        },
-        "v0.2.0-experimental": {
-          "code": 7,
-          "name": "0.2.0-experimental"
-        },
-        "v0.2.1-experimental": {
-          "code": 8,
-          "name": "0.2.1-experimental"
+        "v0.3.0-experimental": {
+          "code": 10,
+          "name": "0.3.0-experimental"
         }
       }
     },
