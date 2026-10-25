@@ -16,7 +16,7 @@ python3 tools/package_release.py --check-release-apk app/build/outputs/apk/relea
 ## 構成
 
 - `Catalog`：同梱／キャッシュ／GitHubのアプリ一覧。無効な取得結果は既存カタログへ戻す。
-- `ManagerState`：リリースのキャッシュとETag、取得状態。ネットワーク処理はワーカースレッド。
+- `ManagerState`：リリースのキャッシュとETag、取得状態。ネットワーク処理はワーカースレッド。`ParallelChecks`で最大4アプリを同時に確認し、進捗は調整用スレッドで集約する。回数制限では実行中の処理だけを完了し、新しい確認を開始しない。
 - `ReleasePolicy`／`VersionOrder`：実験版の選別、APK由来のversionCodeとタグの数値バージョン比較。
 - `DownloadService`：ユーザー操作で開始するforeground dataSync。順次ダウンロード、キャンセル、部分ファイル削除。
 - `ApkVerifier`：ハッシュ、パッケージ、証明書履歴、デバッグ不可、最小OS、更新方向の確認。
@@ -69,3 +69,7 @@ python3 tools/publish_release_metadata.py --repo OneUI-Mods/対象リポジト�
 `.github/workflows/release-metadata.yml`は、この処理をRelease公開後に呼び出すための再利用可能なworkflowです。APKの署名を検証してJSONを添付するだけで、ReleaseやAPKを自動作成しません。署名鍵をCIへ渡しません。
 
 管理アプリは安定版・実験版の候補に限って小さいJSONを取得し、GitHubが返すJSON自身とAPKのdigest、登録済みパッケージとファイル名を照合します。キャッシュは端末内で保持し、起動時のキャッシュ読み込みでは通信しません。版情報のためだけにAPK本体を取得する処理はありません。
+
+## 0.2のPC側検証
+
+公開カタログとリリース情報の分離、署名済みAPK由来の版情報を検証しました。並列確認は最大4件の同時実行、回数制限時の新規確認停止、単一リポジトリの失敗時に他を継続する契約をJUnitで確認しています。14件のJUnit、lint、releaseビルド、カタログ・依存ライセンス・APK構造検査が通過しました。並列版の実機確認とインストールは、端末操作禁止の指示に従い保留しています。

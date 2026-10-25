@@ -86,51 +86,61 @@ final class ManagerState {
     notifyChanged();
     worker.execute(
         () -> {
-          boolean all = true;
           try {
-            apps = Catalog.refresh(context);
-          } catch (Exception ignored) {
-            /* Keep the verified bundled or last valid catalog offline. */
-          }
-          for (AppEntry app : apps) {
+            boolean catalogLoaded = true;
             try {
-              File cache = new File(context.getFilesDir(), "release-" + app.repo() + ".json");
-              String key = "etag_" + app.repo();
-              String etag = cache.isFile() ? preferences.getString(key, "") : "";
-              Network.Response response =
-                  Network.text(
-                      "https://api.github.com/repos/OneUI-Mods/"
-                          + app.repo()
-                          + "/releases?per_page=100",
-                      etag,
-                      4 * 1024 * 1024);
-              String raw = response.unchanged() ? Io.read(cache) : response.text();
-              List<Release> parsed =
-                  ReleaseMetadata.load(context, app, GitHubReleases.parse(app, raw), true);
-              if (!response.unchanged()) Io.write(cache, raw);
-              feeds.put(app.repo(), parsed);
-              errors.remove(app.repo());
-              preferences
-                  .edit()
-                  .putString(key, response.etag() == null ? "" : response.etag())
-                  .putLong("checked_" + app.repo(), System.currentTimeMillis())
-                  .apply();
-            } catch (Exception error) {
-              all = false;
-              errors.put(
-                  app.repo(), error instanceof Network.Failure f ? "HTTP " + f.status : "offline");
-              if (error instanceof Network.Failure f && f.retryAt > System.currentTimeMillis()) {
-                retryAt = f.retryAt;
-                break;
-              }
+              apps = Catalog.refresh(context);
+            } catch (Exception ignored) {
+              catalogLoaded = false; // Keep the verified last valid catalog offline.
             }
-            completed++;
+            ParallelChecks.Summary summary =
+                ParallelChecks.run(
+                    apps,
+                    4,
+                    this::checkRelease,
+                    result -> {
+                      completed++;
+                      retryAt = Math.max(retryAt, result.retryAt());
+                      notifyChanged();
+                    });
+            if (catalogLoaded && summary.successful())
+              preferences.edit().putLong("last_check", System.currentTimeMillis()).apply();
+          } catch (InterruptedException interrupted) {
+            Thread.currentThread().interrupt();
+          } finally {
+            checking = false;
             notifyChanged();
           }
-          if (all) preferences.edit().putLong("last_check", System.currentTimeMillis()).apply();
-          checking = false;
-          notifyChanged();
         });
+  }
+
+  private ParallelChecks.Result checkRelease(AppEntry app) {
+    try {
+      File cache = new File(context.getFilesDir(), "release-" + app.repo() + ".json");
+      String key = "etag_" + app.repo();
+      String etag = cache.isFile() ? preferences.getString(key, "") : "";
+      Network.Response response =
+          Network.text(
+              "https://api.github.com/repos/OneUI-Mods/" + app.repo() + "/releases?per_page=100",
+              etag,
+              4 * 1024 * 1024);
+      String raw = response.unchanged() ? Io.read(cache) : response.text();
+      List<Release> parsed =
+          ReleaseMetadata.load(context, app, GitHubReleases.parse(app, raw), true);
+      if (!response.unchanged()) Io.write(cache, raw);
+      feeds.put(app.repo(), parsed);
+      errors.remove(app.repo());
+      preferences
+          .edit()
+          .putString(key, response.etag() == null ? "" : response.etag())
+          .putLong("checked_" + app.repo(), System.currentTimeMillis())
+          .apply();
+      return new ParallelChecks.Result(true, 0);
+    } catch (Exception error) {
+      errors.put(app.repo(), error instanceof Network.Failure f ? "HTTP " + f.status : "offline");
+      long retry = error instanceof Network.Failure f ? f.retryAt : 0;
+      return new ParallelChecks.Result(false, retry > System.currentTimeMillis() ? retry : 0);
+    }
   }
 
   private void loadCached(AppEntry app) {

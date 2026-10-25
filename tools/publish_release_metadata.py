@@ -5,6 +5,7 @@ import json
 from pathlib import Path
 import subprocess
 import tempfile
+import time
 from urllib.parse import quote
 
 from release_metadata import ROOT, write_metadata
@@ -19,11 +20,16 @@ def publish(repo, tag, tools, dry_run=False):
     app = next((a for a in catalog["apps"] if repo == "OneUI-Mods/" + a["repo"]), None)
     if app is None:
         raise ValueError("Repository is not registered in the public catalog")
-    release = json.loads(gh("api", f"repos/{repo}/releases/tags/{quote(tag, safe='')}"))
-    if release["draft"]:
-        raise ValueError("Only published releases are supported")
-    apks = [a for a in release["assets"] if a["name"].lower().endswith(".apk")
-            and not any(word in a["name"].lower() for word in ["debug", "unsigned"])]
+    # A published event may arrive while the release assets are still uploading.
+    for attempt in range(6):
+        release = json.loads(gh("api", f"repos/{repo}/releases/tags/{quote(tag, safe='')}"))
+        if release["draft"]:
+            raise ValueError("Only published releases are supported")
+        apks = [a for a in release["assets"] if a["name"].lower().endswith(".apk")
+                and not any(word in a["name"].lower() for word in ["debug", "unsigned"])]
+        if apks or attempt == 5:
+            break
+        time.sleep(5)
     if len(apks) != 1:
         raise ValueError("The release must contain exactly one release APK")
     asset = apks[0]
