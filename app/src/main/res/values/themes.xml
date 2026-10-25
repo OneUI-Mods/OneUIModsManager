@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppTheme" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:fontFamily">sans</item>
+        <item name="android:windowActionModeOverlay">true</item>
+        <item name="colorPrimary">@color/panel_primary</item>
+        <item name="colorOnPrimary">@color/panel_on_primary</item>
+        <item name="colorPrimaryContainer">@color/panel_primary_container</item>
+        <item name="colorOnPrimaryContainer">@color/panel_on_primary_container</item>
+    </style>
+</resources>

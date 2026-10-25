@@ -1,0 +1,9 @@
+.gradle/
+**/build/
+local.properties
+.signing/
+dist/
+artifacts/
+__pycache__/
+*.pyc
+.DS_Store

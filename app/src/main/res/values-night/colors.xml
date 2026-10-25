@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="panel_primary">#CDBDFF</color>
+    <color name="panel_on_primary">#35245E</color>
+    <color name="panel_primary_container">#4C3B75</color>
+    <color name="panel_on_primary_container">#E9DDFF</color>
+</resources>

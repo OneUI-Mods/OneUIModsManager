@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item type="id" name="settings_tabs"/>
+    <item type="id" name="license_search"/>
+    <item type="id" name="license_list"/>
+    <item type="id" name="license_text"/>
+    <item type="id" name="module_enabled"/>
+    <item type="id" name="guard_reset"/>
+</resources>
