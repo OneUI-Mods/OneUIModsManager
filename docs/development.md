@@ -73,3 +73,5 @@ python3 tools/publish_release_metadata.py --repo OneUI-Mods/対象リポジト�
 ## 0.2のPC側検証
 
 公開カタログとリリース情報の分離、署名済みAPK由来の版情報を検証しました。並列確認は最大4件の同時実行、回数制限時の新規確認停止、単一リポジトリの失敗時に他を継続する契約をJUnitで確認しています。14件のJUnit、lint、releaseビルド、カタログ・依存ライセンス・APK構造検査が通過しました。並列版の実機確認とインストールは、端末操作禁止の指示に従い保留しています。
+
+- [Kotlin移行の設計と検証範囲](kotlin-migration.md)
