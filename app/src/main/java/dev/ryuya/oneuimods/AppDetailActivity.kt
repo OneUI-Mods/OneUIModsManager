@@ -169,9 +169,9 @@ class AppDetailActivity : InstallerActivity() {
      * linked.
      */
     private fun renderNotes(input: String?): CharSequence? {
-        if (input == null || input.isBlank()) return getString(R.string.no_notes)
+        if (input == null || TextCompatibility.isBlank(input)) return getString(R.string.no_notes)
         val out = SpannableStringBuilder()
-        for (line in input.split("\\R".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()) {
+        for (line in TextCompatibility.split(input, "\\R")) {
             val heading = line.startsWith("#")
             val clean =
                 line

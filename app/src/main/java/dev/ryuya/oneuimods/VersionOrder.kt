@@ -17,8 +17,8 @@ object VersionOrder {
         val left = VersionOrder.FORMAT!!.matcher(a)
         val right = VersionOrder.FORMAT!!.matcher(b)
         if (!left.matches() || !right.matches()) return OptionalInt.empty()
-        val x = left.group(1).split("\\.".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
-        val y = right.group(1).split("\\.".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+        val x = TextCompatibility.split(left.group(1), "\\.")
+        val y = TextCompatibility.split(right.group(1), "\\.")
         for (i in 0 until max(x.size, y.size)) {
             val c =
                 BigInteger(if (i < x.size) x[i] else "0")
@@ -29,8 +29,8 @@ object VersionOrder {
         val q = right.group(2)
         if (p == null || q == null)
             return OptionalInt.of(if (p === q) 0 else if (p == null) 1 else -1)
-        val ps = p.split("\\.".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
-        val qs = q.split("\\.".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+        val ps = TextCompatibility.split(p, "\\.")
+        val qs = TextCompatibility.split(q, "\\.")
         for (i in 0 until min(ps.size, qs.size)) {
             val pn = ps[i].matches("[0-9]+".toRegex())
             val qn = qs[i].matches("[0-9]+".toRegex())

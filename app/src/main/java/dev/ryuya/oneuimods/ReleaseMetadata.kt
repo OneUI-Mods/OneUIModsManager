@@ -27,7 +27,7 @@ object ReleaseMetadata {
             !(!app.packageName.equals(pkg) ||
                 !release.apk!!.name.equals(apk) ||
                 code <= 0 ||
-                version.isBlank() ||
+                TextCompatibility.isBlank(version) ||
                 version.length > 200 ||
                 !sha.matches("[a-fA-F0-9]{64}".toRegex()))
         ) {

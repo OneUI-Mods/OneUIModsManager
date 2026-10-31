@@ -299,7 +299,7 @@ class MainActivity : InstallerActivity() {
         updateList!!.removeAllViews()
         var shown: Int = 0
         var updating: Int = 0
-        val needle = search.trim().lowercase()
+        val needle = TextCompatibility.strip(search).lowercase()
         for (app in state!!.apps!!) {
             val installed: Boolean = InstalledApp.read(this, app!!) != null
             val visible: Boolean =
