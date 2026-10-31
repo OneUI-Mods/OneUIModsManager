@@ -1,0 +1,82 @@
+[
+  {
+    "repo": "galaxy-adaptive-statusbar",
+    "javaBaseline": "1f8b0401950219952ad13d2ba304a69461f98b92",
+    "originalJavaFiles": 46
+  },
+  {
+    "repo": "OneUIHomeTweaks",
+    "javaBaseline": "be6b629a86bdb9eee34b101e3cecf7c8f74870c3",
+    "originalJavaFiles": 72
+  },
+  {
+    "repo": "GalaxyCaptureTools",
+    "javaBaseline": "5c7e7632286c58bd304c82bcda9be18c86029f37",
+    "originalJavaFiles": 46
+  },
+  {
+    "repo": "GalaxyCameraTools",
+    "javaBaseline": "5adc2aa4b9de07600d4d374c3a14915af73d0b1f",
+    "originalJavaFiles": 31
+  },
+  {
+    "repo": "galaxy-reload",
+    "javaBaseline": "1f2445ce683281a25f3e6a66011636b99a8e9678",
+    "originalJavaFiles": 6
+  },
+  {
+    "repo": "galaxy-service-panel",
+    "javaBaseline": "98ba95853ee94a0fa6a36afdb28abb09f7a17b2b",
+    "originalJavaFiles": 13
+  },
+  {
+    "repo": "galaxy-update-guard",
+    "javaBaseline": "3cfd6ad4f400cbf7aabc10de572b79c20211d556",
+    "originalJavaFiles": 10
+  },
+  {
+    "repo": "OneUIModsManager",
+    "javaBaseline": "6c81a393128951f49324244f9e1181aa8b8839f6",
+    "originalJavaFiles": 22
+  },
+  {
+    "repo": "DarkAppTools",
+    "javaBaseline": "b4e8bcf7572b955fec829c403457e645e65d2db2",
+    "originalJavaFiles": 19
+  },
+  {
+    "repo": "tail-adb",
+    "javaBaseline": "77f1ca63cc79d0526b6b2d219586c68f78318b44",
+    "originalJavaFiles": 5
+  },
+  {
+    "repo": "SleepStore",
+    "javaBaseline": "3353017a71e42fdbcb5757830f56c3643d2b77f3",
+    "originalJavaFiles": 6
+  },
+  {
+    "repo": "sim-pilot",
+    "javaBaseline": "22b4ab02d3e5c27cdf3a6a7590f2ef5629ec9933",
+    "originalJavaFiles": 0
+  },
+  {
+    "repo": "legacy-game-tools",
+    "javaBaseline": "80ddbd373db4c2a5f542b17911f16479434f7c02",
+    "originalJavaFiles": 4
+  },
+  {
+    "repo": "galaxy-shutter-mute",
+    "javaBaseline": "89d1775c7d491becb80e2eb89a7046d57ae2e387",
+    "originalJavaFiles": 0
+  },
+  {
+    "repo": "galaxy-shutter-mute-manager",
+    "javaBaseline": "8ac0b1add0b843e0dd5e7b5a028d5509572e64dd",
+    "originalJavaFiles": 0
+  },
+  {
+    "repo": "HomePodBridge",
+    "javaBaseline": "a5bc94614265afe831efd9e9db3368669e045da3",
+    "originalJavaFiles": 77
+  }
+]
