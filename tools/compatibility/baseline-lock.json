@@ -2,47 +2,47 @@
   {
     "repo": "galaxy-adaptive-statusbar",
     "javaBaseline": "1f8b0401950219952ad13d2ba304a69461f98b92",
-    "originalJavaFiles": 78
+    "originalJavaFiles": 46
   },
   {
     "repo": "OneUIHomeTweaks",
     "javaBaseline": "be6b629a86bdb9eee34b101e3cecf7c8f74870c3",
-    "originalJavaFiles": 95
+    "originalJavaFiles": 72
   },
   {
     "repo": "GalaxyCaptureTools",
     "javaBaseline": "5c7e7632286c58bd304c82bcda9be18c86029f37",
-    "originalJavaFiles": 72
+    "originalJavaFiles": 46
   },
   {
     "repo": "GalaxyCameraTools",
     "javaBaseline": "5adc2aa4b9de07600d4d374c3a14915af73d0b1f",
-    "originalJavaFiles": 37
+    "originalJavaFiles": 31
   },
   {
     "repo": "galaxy-reload",
     "javaBaseline": "1f2445ce683281a25f3e6a66011636b99a8e9678",
-    "originalJavaFiles": 7
+    "originalJavaFiles": 6
   },
   {
     "repo": "galaxy-service-panel",
     "javaBaseline": "98ba95853ee94a0fa6a36afdb28abb09f7a17b2b",
-    "originalJavaFiles": 16
+    "originalJavaFiles": 13
   },
   {
     "repo": "galaxy-update-guard",
     "javaBaseline": "3cfd6ad4f400cbf7aabc10de572b79c20211d556",
-    "originalJavaFiles": 11
+    "originalJavaFiles": 10
   },
   {
     "repo": "OneUIModsManager",
     "javaBaseline": "6c81a393128951f49324244f9e1181aa8b8839f6",
-    "originalJavaFiles": 25
+    "originalJavaFiles": 22
   },
   {
     "repo": "DarkAppTools",
     "javaBaseline": "b4e8bcf7572b955fec829c403457e645e65d2db2",
-    "originalJavaFiles": 21
+    "originalJavaFiles": 19
   },
   {
     "repo": "tail-adb",
@@ -77,6 +77,6 @@
   {
     "repo": "HomePodBridge",
     "javaBaseline": "a5bc94614265afe831efd9e9db3368669e045da3",
-    "originalJavaFiles": 0
+    "originalJavaFiles": 77
   }
 ]
