@@ -170,6 +170,16 @@
       "certificates": [
         "23c06734e5e8872c9404032fcd6288e90743a711121ac7cb6847aeef72704ca3"
       ]
+    },
+    {
+      "repo": "galaxy-diag",
+      "packageName": "dev.ryuya.galaxydiag",
+      "title": "Galaxy DIAG",
+      "description": "Galaxyのモデム測定接続を自動準備",
+      "category": "device",
+      "certificates": [
+        "76328777ec6aec98ac9fb70378b2715c72b057c58ae6edb08b6197a1e1d158c2"
+      ]
     }
   ]
 }
