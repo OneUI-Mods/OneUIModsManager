@@ -160,6 +160,16 @@
       "certificates": [
         "f3a3227d5836f3906b033b82e894b493f82b779fda1d3972b30ebfd7e2cff3f0"
       ]
+    },
+    {
+      "repo": "GalaxyChargeMonitor",
+      "packageName": "dev.ryuya.galaxycharge",
+      "title": "Galaxy Charge Monitor",
+      "description": "充電状態・温度制限・充電設定を読み取り専用で監視",
+      "category": "device",
+      "certificates": [
+        "23c06734e5e8872c9404032fcd6288e90743a711121ac7cb6847aeef72704ca3"
+      ]
     }
   ]
 }
