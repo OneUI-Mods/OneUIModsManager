@@ -9,7 +9,6 @@ import java.util.HashSet
 import java.util.List
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.ExecutorService
-import java.util.concurrent.Executors
 import java.util.function.Consumer
 import java.util.function.Function
 import kotlin.concurrent.Volatile
@@ -23,12 +22,16 @@ class ManagerState private constructor(c: Context) {
     @JvmField val context: Context
     @JvmField val preferences: SharedPreferences
     @JvmField val main: Handler = Handler(Looper.getMainLooper())
-    @JvmField val worker: ExecutorService? = Executors.newSingleThreadExecutor()
+    @JvmField val worker: ExecutorService? = BackgroundExecutors.serial("OneUiUpdateChecks")
     @JvmField
     val feeds: MutableMap<String?, MutableList<Release?>?> =
         ConcurrentHashMap<String?, MutableList<Release?>?>()
     @JvmField val errors: MutableMap<String?, String?> = ConcurrentHashMap<String?, String?>()
     @JvmField val listeners: MutableSet<Runnable?> = HashSet<Runnable?>()
+    private val uiUpdate =
+        CoalescedUpdate({ main.post(it) }) {
+            for (listener in List.copyOf<Runnable?>(listeners)) listener.run()
+        }
     @JvmField @Volatile var apps: MutableList<AppEntry?>? = java.util.List.of<AppEntry?>()
     @JvmField @Volatile var checking: Boolean = false
     @JvmField @Volatile var completed: Int = 0
@@ -58,11 +61,7 @@ class ManagerState private constructor(c: Context) {
     }
 
     fun notifyChanged() {
-        main.post(
-            Runnable {
-                for (listener in List.copyOf<Runnable?>(listeners)) listener.run()
-            }
-        )
+        uiUpdate.request()
     }
 
     fun previews(): Boolean {
@@ -126,7 +125,7 @@ class ManagerState private constructor(c: Context) {
                     checking = false
                     notifyChanged()
                 }
-            }
+            },
         )
     }
 
