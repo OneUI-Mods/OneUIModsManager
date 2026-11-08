@@ -180,6 +180,16 @@
       "certificates": [
         "76328777ec6aec98ac9fb70378b2715c72b057c58ae6edb08b6197a1e1d158c2"
       ]
+    },
+    {
+      "repo": "app-battery-tools",
+      "packageName": "dev.ryuya.appbatterytools",
+      "title": "App Battery Tools",
+      "description": "アプリごとの不要な電池消費を抑制",
+      "category": "device",
+      "certificates": [
+        "075d75e7a93f2e185e1000566e8bb14947c0d1c96b1a8b0418b0b709a92d18e3"
+      ]
     }
   ]
 }
