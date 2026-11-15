@@ -200,6 +200,16 @@
       "certificates": [
         "075d75e7a93f2e185e1000566e8bb14947c0d1c96b1a8b0418b0b709a92d18e3"
       ]
+    },
+    {
+      "repo": "rain-compatibility-tools",
+      "packageName": "dev.ryuya.raincompat",
+      "title": "Rain Compatibility Tools",
+      "description": "Rainの起動失敗を診断し、リソース生成の失敗を限定的に補修",
+      "category": "device",
+      "certificates": [
+        "7fff3c5765ee1fb0a351c286ec190de50905feac997c9a991befe6fd6fb4c281"
+      ]
     }
   ]
 }
