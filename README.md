@@ -1,5 +1,7 @@
 # OneUI Mods Manager
 
+[日本語](README.md) · [English](README.en.md)
+
 OneUI-Modsのアプリを一覧で確認し、GitHub Releaseから更新できるAndroidアプリです。
 
 ## できること

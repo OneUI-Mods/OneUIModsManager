@@ -1,5 +1,7 @@
 # Kotlin互換性の検証ツール
 
+[日本語](README.md) · [English](README.en.md)
+
 新しい検証ツールもKotlin。baseline-lock.jsonの元Javaと現Kotlinを別々にコンパイルし、依存JARと出力クラスディレクトリを1行1パスのファイルへ列挙する。JUnitの対照試験には、変更していない元Javaの試験クラスを使う。
 
 ```sh
