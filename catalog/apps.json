@@ -62,6 +62,16 @@
       ]
     },
     {
+      "repo": "secure-folder-bridge",
+      "packageName": "dev.ryuya.securefolderbridge",
+      "title": "Secure Folder Bridge",
+      "description": "Secure Folderを通常のフォルダとして読み書き",
+      "category": "device",
+      "certificates": [
+        "ff3177d13d36bdcee6abf4d8cab0804fd886a8a15a7fe56ad9712b6c286822cc"
+      ]
+    },
+    {
       "repo": "galaxy-update-guard",
       "packageName": "dev.ryuya.galaxyupdateguard",
       "title": "Galaxy Update Guard",
