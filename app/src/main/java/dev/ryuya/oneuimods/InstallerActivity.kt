@@ -94,7 +94,7 @@ abstract class InstallerActivity : AppCompatActivity() {
         if (automatic && repos.size == 1) autoRepo = repos.get(0)!!
         startForegroundService(
             Intent(this, DownloadService::class.java)
-                .putStringArrayListExtra("repos", ArrayList<String?>(repos))
+                .putStringArrayListExtra("repos", ArrayList<String?>(repos)),
         )
     }
 
@@ -138,8 +138,9 @@ abstract class InstallerActivity : AppCompatActivity() {
                             .main
                             .post(
                                 Runnable {
-                                    if (!resumed || isFinishing()) {
+                                    if (!resumed || isFinishing() || isDestroyed) {
                                         installing = false
+                                        if (!isFinishing() && !isDestroyed) autoRepo = repo
                                         return@Runnable
                                     }
                                     try {
@@ -160,11 +161,12 @@ abstract class InstallerActivity : AppCompatActivity() {
                                         awaitingResult = true
                                         startActivityForResult(intent, 102)
                                     } catch (failure: RuntimeException) {
+                                        awaitingResult = false
                                         installing = false
                                         queue.clear()
                                         message(getString(R.string.install_failed))
                                     }
-                                }
+                                },
                             )
                     } catch (failure: Exception) {
                         state!!
@@ -173,19 +175,20 @@ abstract class InstallerActivity : AppCompatActivity() {
                                 Runnable {
                                     installing = false
                                     queue.clear()
-                                    ReadyStore.clear(this, app)
+                                    ReadyStore.clear(applicationContext, app)
+                                    if (!resumed || isFinishing() || isDestroyed) return@Runnable
                                     message(
                                         Ui.error(
                                             this,
                                             if (failure is ApkVerifier.Rejected) failure.reason
                                             else "network",
-                                        )
+                                        ),
                                     )
                                     refreshView()
-                                }
+                                },
                             )
                     }
-                }
+                },
             )
     }
 
@@ -217,6 +220,7 @@ abstract class InstallerActivity : AppCompatActivity() {
     }
 
     protected fun message(body: String?) {
+        if (isFinishing || isDestroyed) return
         MaterialAlertDialogBuilder(this)
             .setTitle(R.string.error_title)
             .setMessage(body)

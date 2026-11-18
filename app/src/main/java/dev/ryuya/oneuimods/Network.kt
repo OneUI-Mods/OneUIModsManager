@@ -14,7 +14,16 @@ object Network {
     @JvmStatic
     @Throws(IOException::class)
     fun open(address: String?, accept: String?, etag: String?): HttpURLConnection? {
-        var address: String? = address
+        return openWithFactory(address, accept, etag) { it.openConnection() as HttpURLConnection }
+    }
+
+    internal fun openWithFactory(
+        initialAddress: String?,
+        accept: String?,
+        etag: String?,
+        create: (URL) -> HttpURLConnection,
+    ): HttpURLConnection {
+        var address = initialAddress
         for (redirects in 0..5) {
             val url = URL(address)
             val host = url.getHost()
@@ -26,34 +35,49 @@ object Network {
                     url.getUserInfo() != null
             )
                 throw IOException("Unsupported download origin")
-            val c: HttpURLConnection? = url.openConnection() as HttpURLConnection?
-            c!!.setInstanceFollowRedirects(false)
-            c!!.setConnectTimeout(15000)
-            c!!.setReadTimeout(20000)
-            c!!.setRequestProperty("User-Agent", "OneUIModsManager/" + BuildConfig.VERSION_NAME)
-            c!!.setRequestProperty("Accept", accept)
-            if (host == "api.github.com")
-                c!!.setRequestProperty("X-GitHub-Api-Version", "2022-11-28")
-            if (etag != null && !etag.isEmpty()) c!!.setRequestProperty("If-None-Match", etag)
-            val status = c!!.getResponseCode()
-            if (status == 301 || status == 302 || status == 303 || status == 307 || status == 308) {
-                val location = c!!.getHeaderField("Location")
-                c!!.disconnect()
-                if (location == null) throw IOException("Missing redirect")
-                address = URL(url, location).toString()
-                continue
-            }
-            if (status == 200 || status == 304) return c
-            var reset: Long = 0
+            val c = create(url)
             try {
+                c!!.setInstanceFollowRedirects(false)
+                c!!.setConnectTimeout(15000)
+                c!!.setReadTimeout(20000)
+                c!!.setRequestProperty("User-Agent", "OneUIModsManager/" + BuildConfig.VERSION_NAME)
+                c!!.setRequestProperty("Accept", accept)
+                if (host == "api.github.com")
+                    c!!.setRequestProperty("X-GitHub-Api-Version", "2022-11-28")
+                if (etag != null && !etag.isEmpty()) c!!.setRequestProperty("If-None-Match", etag)
+                val status = c!!.getResponseCode()
                 if (
-                    (status == 403 && "0" == c!!.getHeaderField("X-RateLimit-Remaining")) ||
-                        status == 429
-                )
-                    reset = c!!.getHeaderField("X-RateLimit-Reset").toLong() * 1000
-            } catch (ignored: NumberFormatException) {}
-            c!!.disconnect()
-            throw Network.Failure(status, reset)
+                    status == 301 ||
+                        status == 302 ||
+                        status == 303 ||
+                        status == 307 ||
+                        status == 308
+                ) {
+                    val location = c!!.getHeaderField("Location")
+                    c!!.disconnect()
+                    if (location == null) throw IOException("Missing redirect")
+                    address = URL(url, location).toString()
+                    continue
+                }
+                if (status == 200 || status == 304) return c
+                var reset: Long = 0
+                try {
+                    if (
+                        (status == 403 && "0" == c!!.getHeaderField("X-RateLimit-Remaining")) ||
+                            status == 429
+                    )
+                        reset =
+                            c.getHeaderField("X-RateLimit-Reset")
+                                ?.toLongOrNull()
+                                ?.takeIf { it in 0..Long.MAX_VALUE / 1000 }
+                                ?.times(1000) ?: 0
+                } catch (ignored: NumberFormatException) {}
+                c!!.disconnect()
+                throw Network.Failure(status, reset)
+            } catch (error: Exception) {
+                c.disconnect()
+                throw error
+            }
         }
         throw IOException("Too many redirects")
     }
