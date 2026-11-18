@@ -210,6 +210,16 @@
       "certificates": [
         "7fff3c5765ee1fb0a351c286ec190de50905feac997c9a991befe6fd6fb4c281"
       ]
+    },
+    {
+      "repo": "simeji-clean",
+      "packageName": "net.ryuya_dev.simejiclean",
+      "title": "Simeji Clean",
+      "description": "Simejiの特定の広告・おすすめパネルを非表示にする",
+      "category": "appearance",
+      "certificates": [
+        "67db8e3df1bc1e0be42e3f78958688a32c8444d23c817974dbb84016f0700329"
+      ]
     }
   ]
 }
