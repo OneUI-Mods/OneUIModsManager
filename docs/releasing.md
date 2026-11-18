@@ -16,7 +16,7 @@ f37313a1ddbe006257653b4772e9a2f43f0ddd5c0bcbf6dfe0f71c2fbd9aad73
 2. テスト・lint・releaseビルド・依存ライセンス・カタログ検査を実行する。
 3. READMEの対応環境・制限を確認し、開発用の検証記録を分けて記載する。
 4. 変更をコミットし、作業ツリーをクリーンにする。
-5. JDK 21とAndroid SDKの環境で実行する。
+5. JDK 27とAndroid SDKの環境で実行する。
 
 ```sh
 python3 tools/package_release.py --source-ref HEAD
