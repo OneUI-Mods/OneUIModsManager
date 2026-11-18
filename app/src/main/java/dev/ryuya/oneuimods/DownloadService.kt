@@ -30,12 +30,12 @@ class DownloadService : Service() {
         super.onCreate()
         state = ManagerState.get(this)
         getSystemService<NotificationManager?>(NotificationManager::class.java)
-            .createNotificationChannel(
+            ?.createNotificationChannel(
                 NotificationChannel(
                     DownloadService.CHANNEL,
                     getString(R.string.download_channel),
                     NotificationManager.IMPORTANCE_LOW,
-                )
+                ),
             )
     }
 
@@ -90,7 +90,7 @@ class DownloadService : Service() {
                     stopForeground(Service.STOP_FOREGROUND_REMOVE)
                     stopSelf()
                 }
-            }
+            },
         )
         return Service.START_NOT_STICKY
     }
@@ -106,7 +106,7 @@ class DownloadService : Service() {
                 Pattern.compile(
                     "(?m)^([a-fA-F0-9]{64})[ \t]+\\*?" +
                         Pattern.quote(release.apk!!.name) +
-                        "[ \t]*$"
+                        "[ \t]*$",
                 )
             val match = line.matcher(sums)
             if (!match.find()) throw ApkVerifier.Rejected("missing_hash")
@@ -137,7 +137,7 @@ class DownloadService : Service() {
                             state!!.downloadPercent = (total * 100 / expectedSize).toInt()
                             state!!.notifyChanged()
                             getSystemService<NotificationManager?>(NotificationManager::class.java)
-                                .notify(
+                                ?.notify(
                                     DownloadService.NOTICE,
                                     notification(app.title, state!!.downloadPercent),
                                 )
@@ -186,7 +186,7 @@ class DownloadService : Service() {
             .setProgress(100, progress, false)
             .addAction(
                 android.app.Notification.Action.Builder(null, getString(R.string.cancel), cancel)
-                    .build()
+                    .build(),
             )
             .build()
     }

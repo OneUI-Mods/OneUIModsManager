@@ -61,3 +61,5 @@ The app is licensed under the MIT License. Dependency licenses are available und
 ## String compatibility
 
 Handling of certain whitespace and empty strings in search, release information, and version comparison has been aligned with the previous behavior.
+
+[Build environment / ビルド環境](docs/build-environment.md)

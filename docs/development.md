@@ -2,7 +2,7 @@
 
 ## ビルド
 
-JDK 21、Android SDK 37、Build Tools 37.0.0を使用します。minSdkは36です。
+JDK 27、Android SDK 37、Build Tools 37.0.0を使用します。minSdkは36です。
 
 ```sh
 ./gradlew :app:testDebugUnitTest :app:lintRelease :app:assembleRelease :app:writeRuntimeDependencyList
@@ -79,3 +79,5 @@ python3 tools/publish_release_metadata.py --repo OneUI-Mods/対象リポジト�
 ## CPU・メモリ効率
 
 [変更内容と検証範囲](efficiency.md)を参照してください。
+
+[Build environment / ビルド環境](build-environment.md)

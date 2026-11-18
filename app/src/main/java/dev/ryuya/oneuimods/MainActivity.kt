@@ -67,7 +67,7 @@ class MainActivity : InstallerActivity() {
                 OnMenuItemClickListener { item: MenuItem? ->
                     language()
                     true
-                }
+                },
             )
         tabs = SettingsTabs(this, root, saved)
         buildApps(tabs!!.page(R.string.apps_tab))
@@ -87,7 +87,7 @@ class MainActivity : InstallerActivity() {
         top.addView(lastCheck)
         check = Ui.button(this, R.string.check_updates, true)
         check!!.setOnClickListener(
-            android.view.View.OnClickListener { v: View? -> state!!.refresh(true) }
+            android.view.View.OnClickListener { v: View? -> state!!.refresh(true) },
         )
         top.addView(check, LayoutParams(-1, -2))
         progress = LinearProgressIndicator(this)
@@ -118,7 +118,7 @@ class MainActivity : InstallerActivity() {
                 }
 
                 override fun afterTextChanged(s: Editable?) {}
-            }
+            },
         )
         val chips = ChipGroup(this)
         chips.setSingleSelection(true)
@@ -140,7 +140,7 @@ class MainActivity : InstallerActivity() {
                         filter = which
                         renderLists()
                     }
-                }
+                },
             )
         }
         page.addView(chips, LayoutParams(-1, -2))
@@ -163,7 +163,7 @@ class MainActivity : InstallerActivity() {
                 )
                     repos.add(app.repo)
                 download(repos, false)
-            }
+            },
         )
         intro.addView(batch, LayoutParams(-1, -2))
         installAll = Ui.button(this, R.string.install_all, false)
@@ -173,7 +173,7 @@ class MainActivity : InstallerActivity() {
                 for (app in state!!.apps!!) if (ReadyStore.read(this, app!!) != null)
                     repos.add(app.repo)
                 installPrepared(repos)
-            }
+            },
         )
         intro.addView(installAll, LayoutParams(-1, -2))
         updateList = Ui.vertical(this)
@@ -191,21 +191,21 @@ class MainActivity : InstallerActivity() {
         val about = Ui.card(this, page!!, false)
         about.addView(Ui.text(this, getString(R.string.about), true))
         about.addView(
-            Ui.text(this, getString(R.string.version_label, BuildConfig.VERSION_NAME), false)
+            Ui.text(this, getString(R.string.version_label, BuildConfig.VERSION_NAME), false),
         )
         about.addView(Ui.text(this, getString(R.string.privacy), false))
         val licenses = Ui.button(this, R.string.legal_title, false)
         licenses!!.setOnClickListener(
             android.view.View.OnClickListener { v: View? ->
                 startActivity(Intent(this, LicensesActivity::class.java))
-            }
+            },
         )
         about.addView(licenses, LayoutParams(-1, -2))
         val github = Ui.button(this, R.string.source, false)
         github!!.setOnClickListener(
             android.view.View.OnClickListener { v: View? ->
                 Ui.browse(this, "https://github.com/OneUI-Mods/OneUIModsManager")
-            }
+            },
         )
         about.addView(github, LayoutParams(-1, -2))
     }
@@ -227,7 +227,7 @@ class MainActivity : InstallerActivity() {
             OnCheckedChangeListener { b: CompoundButton?, on: Boolean ->
                 state!!.preferences.edit().putBoolean(key, on).apply()
                 state!!.notifyChanged()
-            }
+            },
         )
     }
 
@@ -250,11 +250,11 @@ class MainActivity : InstallerActivity() {
                     R.string.last_check,
                     DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT)
                         .format(Date(checked)),
-                )
+                ),
         )
         check!!.setEnabled(!state!!.checking)
         progress!!.setVisibility(
-            if (state!!.checking || state!!.downloading) View.VISIBLE else View.GONE
+            if (state!!.checking || state!!.downloading) View.VISIBLE else View.GONE,
         )
         var message: String = ""
         if (state!!.checking)
@@ -348,7 +348,7 @@ class MainActivity : InstallerActivity() {
                 if (installed == null) getString(R.string.not_installed)
                 else getString(R.string.installed_version, installed.name),
                 false,
-            )
+            ),
         )
         body.addView(header, LayoutParams(-1, -2))
         val caption = Ui.text(this, AppStatus.label(this, state!!, app), false)
@@ -358,9 +358,9 @@ class MainActivity : InstallerActivity() {
         card!!.setOnClickListener(
             android.view.View.OnClickListener { v: View? ->
                 startActivity(
-                    Intent(this, AppDetailActivity::class.java).putExtra("repo", app.repo)
+                    Intent(this, AppDetailActivity::class.java).putExtra("repo", app.repo),
                 )
-            }
+            },
         )
         card!!.setFocusable(true)
     }
@@ -372,10 +372,10 @@ class MainActivity : InstallerActivity() {
                 arrayOf<String>("System / システム", "日本語", "English"),
                 android.content.DialogInterface.OnClickListener { d: DialogInterface?, which: Int ->
                     getSystemService<LocaleManager?>(LocaleManager::class.java)
-                        .setApplicationLocales(
+                        ?.setApplicationLocales(
                             LocaleList.forLanguageTags(
-                                if (which == 1) "ja" else if (which == 2) "en" else ""
-                            )
+                                if (which == 1) "ja" else if (which == 2) "en" else "",
+                            ),
                         )
                 },
             )

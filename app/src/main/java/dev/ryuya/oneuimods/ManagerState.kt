@@ -30,7 +30,7 @@ class ManagerState private constructor(c: Context) {
     @JvmField val listeners: MutableSet<Runnable?> = HashSet<Runnable?>()
     private val uiUpdate =
         CoalescedUpdate({ main.post(it) }) {
-            for (listener in List.copyOf<Runnable?>(listeners)) listener.run()
+            for (listener in List.copyOf<Runnable?>(listeners)) listener?.run()
         }
     @JvmField @Volatile var apps: MutableList<AppEntry?>? = java.util.List.of<AppEntry?>()
     @JvmField @Volatile var checking: Boolean = false
