@@ -32,6 +32,16 @@
       ]
     },
     {
+      "repo": "GalaxyGlassTools",
+      "packageName": "dev.ryuya.galaxyglass",
+      "title": "Galaxy Glass Tools",
+      "description": "ホーム・通知・クイックパネル・撮影UIのガラス表示",
+      "category": "appearance",
+      "certificates": [
+        "e19cfbca86a4988919d8eb58a9655518a126f3d2d96f03cf96285438364bad7e"
+      ]
+    },
+    {
       "repo": "GalaxyCameraTools",
       "packageName": "dev.ryuya.galaxycamera",
       "title": "Galaxy Camera Tools",
