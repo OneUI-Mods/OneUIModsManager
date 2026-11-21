@@ -182,6 +182,16 @@
       ]
     },
     {
+      "repo": "GalaxyGameMonitor",
+      "packageName": "dev.ryuya.galaxygamemonitor",
+      "title": "Galaxy Game Monitor",
+      "description": "ゲームブースターのCPU・GPU負荷表示の切り替えと再読み込み",
+      "category": "device",
+      "certificates": [
+        "e045b00c5fd69f0bd6b2f8cd7a044a2952c32ea063b081c6702f5972c774efd9"
+      ]
+    },
+    {
       "repo": "GalaxyChargeMonitor",
       "packageName": "dev.ryuya.galaxycharge",
       "title": "Galaxy Charge Monitor",
