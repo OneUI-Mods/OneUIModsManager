@@ -242,6 +242,16 @@
       ]
     },
     {
+      "repo": "package-installer-compat",
+      "packageName": "dev.ryuya.packageinstallercompat",
+      "title": "Package Installer Compatibility",
+      "description": "純正インストーラーで低いtarget SDKのAPKをインストールできるようにする",
+      "category": "device",
+      "certificates": [
+        "2e055d8ff93ef42bb8719e230044aa97aaa1c0cd28214ed148f4d48b142962ed"
+      ]
+    },
+    {
       "repo": "accessibility-keeper",
       "packageName": "dev.ryuya.accessibilitykeeper",
       "title": "Accessibility Keeper",
