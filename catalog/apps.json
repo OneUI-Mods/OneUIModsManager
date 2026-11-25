@@ -240,6 +240,16 @@
       "certificates": [
         "67db8e3df1bc1e0be42e3f78958688a32c8444d23c817974dbb84016f0700329"
       ]
+    },
+    {
+      "repo": "accessibility-keeper",
+      "packageName": "dev.ryuya.accessibilitykeeper",
+      "title": "Accessibility Keeper",
+      "description": "強制終了してもユーザー補助の許可を保つ",
+      "category": "device",
+      "certificates": [
+        "03142ba0c66ad51d050263897f25a39aa68f1783e7138c2c724fb377f670cd2d"
+      ]
     }
   ]
 }
