@@ -40,7 +40,7 @@
     <string name="update">更新</string>
     <string name="download_all">更新をまとめてダウンロード</string>
     <string name="install_all">準備済みの更新を順番にインストール</string>
-    <string name="batch_note">インストールはAndroidの確認画面で1本ずつ進めます。キャンセルすると残りのインストールを中止します。</string>
+    <string name="batch_note">インストールは1本ずつ確認します。キャンセルすると残りのインストールを中止します。</string>
     <string name="install">インストール</string>
     <string name="ready">インストールの準備完了</string>
     <string name="verified">パッケージ・証明書・SHA-256を照合済み</string>
@@ -58,7 +58,7 @@
     <string name="network_title">更新元</string>
     <string name="network_note">OneUI-Modsの公開GitHubリリースを参照します。GitHubログインやroot権限は不要です。インストール済みアプリの情報は送信しません。</string>
     <string name="limits">GitHubの利用上限に達しました。%1$s以降に再確認できます。</string>
-    <string name="permissions_note">インストールはAndroidの確認画面で行います。端末の再起動やモジュールの再読み込みは自動では行いません。</string>
+    <string name="permissions_note">通常はAndroidの確認画面からインストールします。Galaxy Shutter Muteは、確認後にroot・Shizuku・Suiでインストールと必要な権限の付与ができます。</string>
     <string name="language">言語</string>
     <string name="about">アプリ情報</string>
     <string name="privacy">導入状況と更新の比較は端末内で行います。APKはHTTPSで取得し、公開ハッシュとアプリごとの証明書を照合してからインストールへ進みます。</string>
@@ -80,6 +80,19 @@
     <string name="error_canceled">ダウンロードを中止しました</string>
     <string name="install_failed">Androidのインストール画面を開けませんでした。</string>
     <string name="install_canceled">インストールを中止しました</string>
+    <string name="shutter_setup_title">Galaxy Shutter Muteのセットアップ</string>
+    <string name="shutter_install_prompt">検証済みのAPKをインストールし、このプロファイルでシステム設定の変更権限を付与します。</string>
+    <string name="shutter_grant_prompt">このプロファイルのGalaxy Shutter Muteに、保護されたシステム設定の変更権限を付与します。</string>
+    <string name="shutter_no_broker">ShizukuまたはSuiを使う場合は、サービスが起動していることを確認してから、この画面を開き直してください。</string>
+    <string name="shutter_grant_button">必要な権限を付与</string>
+    <string name="shutter_root">rootを使用</string>
+    <string name="shutter_shizuku">Shizukuを使用</string>
+    <string name="shutter_sui">Suiを使用</string>
+    <string name="shutter_access_denied">ShizukuまたはSuiへのアクセスが許可されていません。アプリの権限設定を確認するか、rootを使用してください。</string>
+    <string name="shutter_install_failed">選択した方法でGalaxy Shutter Muteをインストールできませんでした。%1$s</string>
+    <string name="shutter_grant_failed">システム設定の変更権限を付与できませんでした。%1$s</string>
+    <string name="shutter_installed_grant_failed">Galaxy Shutter Muteはインストール済みです。権限を付与できなかったため、アプリ詳細から再試行してください。%1$s</string>
+    <string name="shutter_granted">Galaxy Shutter Muteに権限を付与しました</string>
     <string name="app_missing">このアプリを開けません。</string>
     <string name="close">閉じる</string>
     <string name="version_label">バージョン %1$s</string>

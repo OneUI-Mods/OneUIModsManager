@@ -40,7 +40,7 @@
     <string name="update">Update</string>
     <string name="download_all">Download all updates</string>
     <string name="install_all">Install prepared updates in order</string>
-    <string name="batch_note">Android asks you to confirm each installation. Canceling pauses the remaining installations.</string>
+    <string name="batch_note">Confirm each installation. Canceling pauses the remaining installations.</string>
     <string name="install">Install</string>
     <string name="ready">Ready to install</string>
     <string name="verified">Package, certificate and SHA-256 checked</string>
@@ -58,7 +58,7 @@
     <string name="network_title">Update sources</string>
     <string name="network_note">Reads public GitHub releases from OneUI-Mods. No GitHub login or root access is required. Installed app information is not uploaded.</string>
     <string name="limits">GitHub request limit reached. Try again after %1$s.</string>
-    <string name="permissions_note">Installations use Android’s confirmation screen. This app never reboots the phone or reloads modules automatically.</string>
+    <string name="permissions_note">Most apps use Android’s installation screen. Galaxy Shutter Mute can use root, Shizuku, or Sui to install and grant its required permission after confirmation.</string>
     <string name="language">Language</string>
     <string name="about">About</string>
     <string name="privacy">Apps and updates are checked locally. Downloads use HTTPS and are checked against the published hash and each app’s certificate before installation.</string>
@@ -80,6 +80,19 @@
     <string name="error_canceled">Download canceled</string>
     <string name="install_failed">Android could not open the installation screen.</string>
     <string name="install_canceled">Installation canceled</string>
+    <string name="shutter_setup_title">Set up Galaxy Shutter Mute</string>
+    <string name="shutter_install_prompt">Install the verified Galaxy Shutter Mute APK and grant its system settings permission in this profile.</string>
+    <string name="shutter_grant_prompt">Grant Galaxy Shutter Mute permission to change protected system settings in this profile.</string>
+    <string name="shutter_no_broker">To use Shizuku or Sui, make sure the service is running and reopen this dialog.</string>
+    <string name="shutter_grant_button">Grant required permission</string>
+    <string name="shutter_root">Use root</string>
+    <string name="shutter_shizuku">Use Shizuku</string>
+    <string name="shutter_sui">Use Sui</string>
+    <string name="shutter_access_denied">Shizuku or Sui access was not granted. Check its app permissions or use root.</string>
+    <string name="shutter_install_failed">Could not install Galaxy Shutter Mute using the selected method. %1$s</string>
+    <string name="shutter_grant_failed">Could not grant the system settings permission. %1$s</string>
+    <string name="shutter_installed_grant_failed">Galaxy Shutter Mute was installed. Permission grant failed. You can retry it from the app details. %1$s</string>
+    <string name="shutter_granted">Galaxy Shutter Mute permission granted</string>
     <string name="app_missing">This app cannot be opened.</string>
     <string name="close">Close</string>
     <string name="version_label">Version %1$s</string>

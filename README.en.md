@@ -23,7 +23,9 @@ Android 16 or 17. The manager itself does not require root or Vector. Each modul
 
 Install the signed `*-release.apk` from [Releases](https://github.com/OneUI-Mods/OneUIModsManager/releases). The first time you install an update through this app, Android requires **Allow from this source**.
 
-Choose an app under **Apps**, read its release notes, and download it. Under **Updates**, you can prepare all available updates together. Android asks you to confirm each installation. After updating a module, follow that app's instructions for reloading its target processes. The manager never automatically restarts the device.
+Choose an app under **Apps**, read its release notes, and download it. Under **Updates**, you can prepare all available updates together. Confirm regular installs through Android's installer. After updating a module, follow that app's instructions for reloading its target processes. The manager never automatically restarts the device.
+
+For Galaxy Shutter Mute, confirm setup using root, Shizuku, or Sui. After installation succeeds, the manager automatically grants the required system settings permission in the same profile. If the app is already installed and lacks the permission, use **Grant required permission** on its details screen.
 
 You can also install and update APKs with the same signing identity through the [OneUI Mods F-Droid repository](https://oneui-mods.github.io/fdroid/). This is a separate distribution source from submissions to the official F-Droid repository.
 

@@ -46,12 +46,13 @@ class AppDetailActivity : InstallerActivity() {
     override fun refreshView() {
         if (body == null) return
         val currentRelease = state!!.release(app!!)
+        val shutterNeedsPermission = ShutterMuteSetup.needsPermission(this, app!!)
         val key: String =
             (AppStatus.label(this, state!!, app!!) +
                 InstalledApp.read(this, app!!) +
                 (if (currentRelease == null) "" else currentRelease.tag) +
                 state!!.downloading +
-                state!!.downloadError)
+                state!!.downloadError + shutterNeedsPermission)
         if (key == renderedKey) {
             if (downloadProgress != null)
                 downloadProgress!!.setText(
@@ -124,6 +125,11 @@ class AppDetailActivity : InstallerActivity() {
                 }
             )
             intro.addView(open, LayoutParams(-1, -2))
+        }
+        if (shutterNeedsPermission) {
+            val grant = Ui.button(this, R.string.shutter_grant_button, false)!!
+            grant.setOnClickListener { showShutterSetup(app!!, install = false) }
+            intro.addView(grant, LayoutParams(-1, -2))
         }
         val notes = Ui.card(this, body!!, false)
         notes.addView(Ui.text(this, getString(R.string.whats_new), true))

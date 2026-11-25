@@ -2,9 +2,41 @@
   {
     "id": "project",
     "title": "OneUI Mods Manager",
-    "version": "0.2.3",
+    "version": "0.2.4",
     "license": "MIT",
     "asset": "legal/PROJECT-MIT.txt"
+  },
+  {
+    "id": "dev.rikka.shizuku:aidl",
+    "title": "Shizuku aidl",
+    "version": "13.1.5",
+    "license": "MIT",
+    "asset": "legal/SHIZUKU-MIT.txt",
+    "notice": "Copyright (c) 2021 RikkaW\nhttps://github.com/RikkaApps/Shizuku-API"
+  },
+  {
+    "id": "dev.rikka.shizuku:api",
+    "title": "Shizuku api",
+    "version": "13.1.5",
+    "license": "MIT",
+    "asset": "legal/SHIZUKU-MIT.txt",
+    "notice": "Copyright (c) 2021 RikkaW\nhttps://github.com/RikkaApps/Shizuku-API"
+  },
+  {
+    "id": "dev.rikka.shizuku:provider",
+    "title": "Shizuku provider",
+    "version": "13.1.5",
+    "license": "MIT",
+    "asset": "legal/SHIZUKU-MIT.txt",
+    "notice": "Copyright (c) 2021 RikkaW\nhttps://github.com/RikkaApps/Shizuku-API"
+  },
+  {
+    "id": "dev.rikka.shizuku:shared",
+    "title": "Shizuku shared",
+    "version": "13.1.5",
+    "license": "MIT",
+    "asset": "legal/SHIZUKU-MIT.txt",
+    "notice": "Copyright (c) 2021 RikkaW\nhttps://github.com/RikkaApps/Shizuku-API"
   },
   {
     "id": "androidx.activity:activity",
