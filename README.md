@@ -1,7 +1,5 @@
 # OneUI Mods Manager
 
-インストールにはAndroid 17（API 37）以降が必要です。
-
 [日本語](README.md) · [English](README.en.md)
 
 OneUI-Modsのアプリを一覧で確認し、GitHub Releaseから更新できるAndroidアプリです。
@@ -19,7 +17,7 @@ OneUI-Modsのアプリを一覧で確認し、GitHub Releaseから更新でき�
 
 ## 対応環境
 
-管理アプリ自体にroot・Vectorは不要です。各モジュールの対応OSと導入条件は、それぞれのREADMEをご確認ください。
+ManagerはAndroid 16以降で使えます。root・Vectorは不要です。個別アプリの対応OSと導入条件は各READMEを確認してください。ダウンロードしたAPKが端末より新しいAndroidを必要とする場合は、OS非対応と表示します。
 
 ## 導入と更新
 

@@ -48,7 +48,13 @@ object ApkVerifier {
                 file.getAbsolutePath(),
                 PackageManager.GET_SIGNING_CERTIFICATES,
             )
-        if (apk == null || !app.packageName.equals(apk.packageName) || apk.applicationInfo == null)
+        if (apk == null) {
+            // The platform parser can reject a future SDK before returning ApplicationInfo.
+            val minimumSdk = ManifestMinSdk.read(file)
+            if (minimumSdk != null && minimumSdk > Build.VERSION.SDK_INT) throw Rejected("android")
+            throw Rejected("package")
+        }
+        if (!app.packageName.equals(apk.packageName) || apk.applicationInfo == null)
             throw ApkVerifier.Rejected("package")
         if (
             (apk!!.applicationInfo!!.flags and

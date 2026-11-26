@@ -74,7 +74,7 @@
     <string name="error_package">This APK is not for the selected app.</string>
     <string name="error_version">The APK version does not match the release information.</string>
     <string name="error_not_newer">The same or a newer version is already installed.</string>
-    <string name="error_android">This update requires a newer Android version.</string>
+    <string name="error_android">This app is incompatible with your Android version. Installation requires a newer version of Android.</string>
     <string name="error_missing_hash">This release has no usable SHA-256. Open its GitHub release to review it.</string>
     <string name="error_debug">Debug and test APKs cannot be installed through this manager.</string>
     <string name="error_canceled">Download canceled</string>

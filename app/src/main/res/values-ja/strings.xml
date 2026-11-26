@@ -74,7 +74,7 @@
     <string name="error_package">選択したアプリと異なるAPKです。</string>
     <string name="error_version">APKの版番号が公開情報と一致しません。</string>
     <string name="error_not_newer">同じ版、またはより新しい版がインストールされています。</string>
-    <string name="error_android">この更新には、より新しいAndroidが必要です。</string>
+    <string name="error_android">この端末のAndroidバージョンには対応していません。インストールには、より新しいAndroidが必要です。</string>
     <string name="error_missing_hash">このリリースには照合用のSHA-256がありません。GitHubのリリースで配布内容を確認してください。</string>
     <string name="error_debug">デバッグ用・テスト用APKはこの管理アプリからインストールできません。</string>
     <string name="error_canceled">ダウンロードを中止しました</string>

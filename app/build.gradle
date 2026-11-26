@@ -26,10 +26,10 @@ android {
     buildToolsVersion '37.0.0'
     defaultConfig {
         applicationId 'dev.ryuya.oneuimods'
-        minSdk 37
+        minSdk 36
         targetSdk 37
-        versionCode 10
-        versionName '0.2.6'
+        versionCode 11
+        versionName '0.2.7'
     }
     buildFeatures {
         buildConfig true
