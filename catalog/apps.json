@@ -252,6 +252,16 @@
       ]
     },
     {
+      "repo": "DexPilot",
+      "packageName": "dev.ryuya.installoptimization",
+      "title": "DexPilot",
+      "description": "アプリのインストール時のDEX最適化とCPU上限を管理",
+      "category": "device",
+      "certificates": [
+        "fb3e5ce97401ddba8bcfa3a7bc5bace5be34d11252b906838c61b82c30b8bba3"
+      ]
+    },
+    {
       "repo": "accessibility-keeper",
       "packageName": "dev.ryuya.accessibilitykeeper",
       "title": "Accessibility Keeper",
